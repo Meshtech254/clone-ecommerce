@@ -1,20 +1,5 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 50%, #38bdf8 100%);
-  animation: bg-move 10s ease-in-out infinite alternate;
-}
-
-@keyframes bg-move {
-  0% {
-    background-position: 0% 50%;
-  }
-  100% {
-    background-position: 100% 50%;
-  }
 }
 
 .logo {

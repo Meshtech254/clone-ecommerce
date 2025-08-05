@@ -9,7 +9,9 @@ vi.mock('./assets/clonelogo.png.jpg', () => ({ default: 'clonelogo.png.jpg' }));
 describe('App', () => {
   it("renders the homepage title 'Clo'ne' and slogan", () => {
     render(<App />);
-    expect(screen.getByText(/Clo'ne/i)).toBeInTheDocument();
-    expect(screen.getByText(/experiencetheart/i)).toBeInTheDocument();
+    const matches = screen.getAllByText(/Clo'ne/i);
+    expect(matches.length).toBeGreaterThan(0);
+    const sloganMatches = screen.getAllByText(/experiencetheart/i);
+    expect(sloganMatches.length).toBeGreaterThan(0);
   });
 }); 

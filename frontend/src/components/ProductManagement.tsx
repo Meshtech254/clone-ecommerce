@@ -18,9 +18,9 @@ const ProductManagement: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
-  // state placeholders kept minimal to avoid unused warnings
-  const [showAddModal, setShowAddModal] = useState(false);
-  const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+  // keep only setters to avoid unused variable errors
+  const [, setShowAddModal] = useState(false);
+  const [, setEditingProduct] = useState<Product | null>(null);
 
   // Mock data - replace with actual API calls
   useEffect(() => {

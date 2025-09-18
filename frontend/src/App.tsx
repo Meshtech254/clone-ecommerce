@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { supabase } from './lib/supabaseClient';
 import { BrowserRouter as Router, Routes, Route, Link, NavLink } from 'react-router-dom';
 import logo from './assets/clonelogo.png.jpg.png';
 import AdminDashboard from './components/AdminDashboard';
@@ -269,14 +270,32 @@ function AuthModal({
     confirmPassword: ''
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // For demo purposes, just simulate successful authentication
-    if (mode === 'register' && formData.password !== formData.confirmPassword) {
-      alert('Passwords do not match!');
-      return;
+    try {
+      if (mode === 'register') {
+        if (formData.password !== formData.confirmPassword) {
+          alert('Passwords do not match!');
+          return;
+        }
+        const { error } = await supabase.auth.signUp({
+          email: formData.email,
+          password: formData.password
+        });
+        if (error) throw error;
+        alert('Check your email to confirm your account.');
+        onSuccess();
+      } else {
+        const { error } = await supabase.auth.signInWithPassword({
+          email: formData.email,
+          password: formData.password
+        });
+        if (error) throw error;
+        onSuccess();
+      }
+    } catch (err: any) {
+      alert(err.message || 'Authentication failed');
     }
-    onSuccess();
   };
 
   return (
@@ -359,12 +378,7 @@ function AuthModal({
           </p>
         </div>
 
-        {/* Demo Notice */}
-        <div className="mt-6 p-4 bg-gray-100 rounded-lg">
-          <p className="text-sm text-gray-600 text-center">
-            <strong>Demo Mode:</strong> This is a demonstration. Any email/password combination will work.
-          </p>
-        </div>
+        
       </div>
     </div>
   );

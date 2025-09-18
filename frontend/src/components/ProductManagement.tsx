@@ -18,8 +18,9 @@ const ProductManagement: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedCategory, setSelectedCategory] = useState('all');
-  const [showAddModal, setShowAddModal] = useState(false);
-  const [editingProduct, setEditingProduct] = useState<Product | null>(null);
+  // state placeholders kept minimal to avoid unused warnings
+  const [, setShowAddModal] = useState(false);
+const [, setEditingProduct] = useState<Product | null>(null);
 
   // Mock data - replace with actual API calls
   useEffect(() => {
@@ -104,9 +105,7 @@ const ProductManagement: React.FC = () => {
     }).format(amount);
   };
 
-  const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString();
-  };
+  // removed unused formatDate
 
   if (loading) {
     return (

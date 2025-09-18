@@ -7,7 +7,7 @@ import './App.css';
 
 const accentGold = 'text-[#C9B037]';
 const accentGoldBg = 'bg-[#C9B037]';
-const accentGoldBorder = 'border-[#C9B037]';
+// removed unused accentGoldBorder
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -41,7 +41,7 @@ function App() {
         <main className="flex-1 w-full">
           <Routes>
             <Route path="/" element={<Home onAddToCart={addToCart} />} />
-            <Route path="/shop" element={<Shop onAddToCart={addToCart} />} />
+            <Route path="/shop" element={<Shop />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/admin" element={<AdminDashboard />} />
@@ -629,7 +629,7 @@ function InstagramSection() {
   );
 }
 
-function Shop({ onAddToCart }: { onAddToCart: () => void }) {
+function Shop() {
   return (
     <div className="w-full min-h-[60vh] flex flex-col items-center justify-center bg-black text-white py-16">
       <h2 className={`text-3xl font-bold mb-4 ${accentGold}`}>Shop Clo'ne</h2>

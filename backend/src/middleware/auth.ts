@@ -46,3 +46,4 @@ export const optionalAuth = async (req: AuthRequest, res: Response, next: NextFu
     next();
   }
 };
+
